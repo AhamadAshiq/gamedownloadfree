@@ -31,7 +31,7 @@ SECRET_KEY = 'x561ezo_iyiqcwentj2puk)5h4lc#*ifop&r$hz_n1094$7bpp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['gamedownloadfree.com', 'www.gamedownloadfree.com','127.0.0.1/']
+ALLOWED_HOSTS = ['gamedownloadfree.com', 'www.gamedownloadfree.com','.onrender.com','gamedownloadfree.onrender.com']
 # ALLOWED_HOSTS = []
 
 
