@@ -32,7 +32,7 @@ SECRET_KEY = 'x561ezo_iyiqcwentj2puk)5h4lc#*ifop&r$hz_n1094$7bpp'
 DEBUG = True
 
 ALLOWED_HOSTS = ['gamedownloadfree.com', 'www.gamedownloadfree.com','127.0.0.1/']
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
