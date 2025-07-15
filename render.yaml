@@ -19,6 +19,12 @@ services:
         generateValue: true
       - key: DEBUG
         value: False
+      - key: DJANGO_ADMIN_USERNAME
+        value: admin
+      - key: DJANGO_ADMIN_EMAIL
+        value: admin@example.com
+      - key: DJANGO_ADMIN_PASSWORD
+        value: admin123
 
 # 🔥 Move this outside the `services:` block
 staticPublishPath: staticfiles
