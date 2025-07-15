@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Homepage | GameDownloadFree{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section Begin -->
+<section class="hero">
+    <div class="container">
+        <div class="hero__slider owl-carousel">
+            {% for game in featured_games %}
+            <div class="hero__items set-bg" data-setbg="{{ game.image.url }}">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="hero__text">
+                            <div class="label">{{ game.label }}</div>
+                            <h2>{{ game.title }}</h2>
+                            <p>{{ game.description }}</p>
+                            <a href="{{ game.download_link }}" class="primary-btn">Download Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+
+<section class="product spad">
+    <div class="container">
+        <div class="section-title">
+            <h4>Popular Free Games</h4>
+        </div>
+        <div class="row">
+            {% for game in games %}
+            <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="product__item">
+                    <a href="{% url 'game_detail' slug=game.slug %}">
+                        <div class="product__item__pic set-bg" data-setbg="{{ game.image.url }}">
+                            <div class="ep">{{ game.platform }}</div>
+                            <div class="view"><i class="fa fa-download"></i> {{ game.downloads|default:0 }}</div>
+                        </div>
+                    </a>
+
+                </div>
+
+
+
+                    <div class="product__item__text">
+                        <h5><a href="{% url 'game_detail' slug=game.slug %}">{{ game.title }}</a></h5>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No games available yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

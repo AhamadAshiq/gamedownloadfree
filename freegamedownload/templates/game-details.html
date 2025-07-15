@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ game.title }} | GameDownloadFree{% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="{% url 'home' %}"><i class="fa fa-home"></i> Home</a>
+                    <a href="#">Categories</a>
+                    <span>{{ game.platform|title }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Game Details Begin -->
+<section class="anime-details spad">
+    <div class="container">
+        <div class="anime__details__content">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="anime__details__pic" style="background-image: url('{{ game.image.url }}'); background-size: cover; background-position: center; height: 350px;">
+                        <div class="comment"><i class="fa fa-comments"></i> {{ game.comments.count|default:"0" }}</div>
+                        <div class="view"><i class="fa fa-eye"></i> {{ game.views|default:"0" }}</div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="anime__details__text">
+                        <div class="anime__details__title">
+                            <h3>{{ game.title }}</h3>
+                            <span>{{ game.slug }}</span>
+                        </div>
+                        <div class="anime__details__rating">
+                            <div class="rating">
+                                {% for i in "12345" %}
+                                    <i class="fa fa-star{% if forloop.counter > game.rating|floatformat:0 %}-o{% endif %}"></i>
+                                {% endfor %}
+                            </div>
+                            <span>{{ game.rating|default:"N/A" }} Rating</span>
+                        </div>
+                        <p>{{ game.description }}</p>
+                        <div class="anime__details__widget">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <ul>
+                                        <li><span>Platform:</span> {{ game.platform|title }}</li>
+                                        <li><span>Uploaded:</span> {{ game.created_at|date:"F d, Y" }}</li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <ul>
+                                        <li><span>Size:</span> {{ game.size|default:"N/A" }}</li>
+                                        <li><span>Version:</span> {{ game.version|default:"1.0" }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="anime__details__btn">
+                            <a href="{{ game.download_link }}" class="watch-btn"><span>Download Now</span> <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if game.screenshots.all %}
+            <div class="row mt-4">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h5>Game Screenshots</h5>
+                    </div>
+                    <div class="row">
+                        {% for shot in game.screenshots.all %}
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <img src="{{ shot.image.url }}" alt="Screenshot" class="img-fluid rounded">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<!-- Game Details End -->
+
+{% endblock %}
